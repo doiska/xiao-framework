@@ -1,0 +1,23 @@
+{
+  "name": "esbuild-fivem",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.prod.js",
+    "watch": "node build.dev.js"
+  },
+  "devDependencies": {
+    "@anatine/esbuild-decorators": "^0.2.19",
+    "@citizenfx/client": "^2.0.5722-1",
+    "@citizenfx/server": "^2.0.5722-1",
+    "@types/node": "^18.0.3",
+    "chalk": "^5.0.1",
+    "esbuild": "^0.14.49",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "fivem-esx-js": "^0.1.16"
+  }
+}
