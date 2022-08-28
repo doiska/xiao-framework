@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@application/*": ["application/*"],
+			"@consumers/*": ["consumers/*"],
+			"@containers/*": ["containers/*"],
+			"@context/*": ["context/*"],
+			"@decorators/*": ["decorators/*"],
+			"@hooks/*": ["hooks/*"],
+			"@interfaces/*": ["interfaces/*"],
+			"@services/*": ["services/*"],
+			"@typings/*": ["typings/*"],
+			"@utils/*": ["utils/*"],
+			"~/*": ["*"]
+		}
+	}
+}

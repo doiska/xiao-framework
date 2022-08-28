@@ -1,0 +1,36 @@
+{
+	"extends": "./tsconfig.paths.json",
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"baseUrl": "./src",
+		"module": "commonjs",
+		"target": "es2016",
+		"allowJs": false,
+		"lib": [
+			"es2015",
+			"DOM"
+		],
+		"types": [
+			"@citizenfx/server",
+			"@citizenfx/client",
+			"@types/jest",
+			"@types/node",
+			"reflect-metadata",
+			"vitest/globals"
+		],
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"noEmit": true
+	},
+	"include": [
+		"./src/**/*.ts",
+		".eslintrc.js"
+	],
+	"exclude": [
+		"vitest.config.ts",
+		"test-setup.ts"
+	]
+}
