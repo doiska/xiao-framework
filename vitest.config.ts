@@ -1,32 +1,26 @@
 import { defineConfig } from 'vitest/config'
 import { resolve } from "path";
+import swc from 'unplugin-swc';
 
-const r = (p: string) => {
-	const res = resolve(__dirname, p)
-	console.log(res);
-	return res;
-}
+import tsPaths from './tsconfig.paths.json';
+
+const toSrcPath = (p: string) => resolve(__dirname, 'src', p)
+
+const paths = Object.entries(tsPaths.compilerOptions.paths);
+
+const pathAsObject = paths.reduce((acc, [_key, value]) => {
+	acc[_key.replace('/*', '')] = toSrcPath(value[0].replace('/*', ''))
+	return acc;
+}, {} as Record<string, string>);
 
 export default defineConfig({
+	plugins: [swc.vite()],
 	test: {
 		globals: true,
 		environment: "node",
 		setupFiles: ["./setupTests.ts"],
 	},
 	resolve: {
-		alias: {
-			"@application": r("src/application"),
-			"@consumers": r("src/consumers"),
-			"@containers": r("src/containers"),
-			"@context": r("src/context"),
-			"@decorators": r("src/decorators"),
-			"@hooks": r("src/hooks"),
-			"@interfaces": r("src/interfaces"),
-			"@services": r("src/services"),
-			"@controllers": r("src/controllers"),
-			"@interceptors": r("src/interceptors"),
-			"@utils": r("src/utils"),
-			"@typings": r("src/typings"),
-		}
+		alias: pathAsObject
 	}
 })
