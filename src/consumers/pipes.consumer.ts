@@ -12,7 +12,7 @@ export class PipesConsumer {
 			const args = executionContext.getArgs();
 
 			for (const [index, values] of pipesMetadata) {
-				for(const pipe of values) {
+				for (const pipe of values) {
 					const pipeInstance = XiaoContainer.container.resolve<IPipeTransform>(pipe);
 
 					args[index] = await PipesConsumer.pickResult(
@@ -21,7 +21,7 @@ export class PipesConsumer {
 				}
 			}
 
-			return new ExecutionContext(args,  executionContext.getClass(), executionContext.getHandler());
+			return new ExecutionContext(args, executionContext.getClass(), executionContext.getHandler());
 		}
 	}
 
