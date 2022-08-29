@@ -5,7 +5,7 @@ import { ICanActivate } from "@interfaces/decorators/can-activate.interface";
 export function UseGuards(...guards: (ICanActivate | Function)[]): MethodDecorator & ClassDecorator {
 	return (
 		target: any,
-		key?: string | symbol,
+		_key?: string | symbol,
 		descriptor?: TypedPropertyDescriptor<any>
 	) => {
 		if(descriptor) {
