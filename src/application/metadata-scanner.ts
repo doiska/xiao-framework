@@ -1,9 +1,9 @@
-import { isConstructor, isFunction } from '../utils/shared.utils';
+import { isConstructor, isFunction } from '@utils/shared.utils';
 import { iterate } from 'iterare';
 
 export class MetadataScanner {
 	/**
-	 * Retreive class's metadata
+	 * Retrieve class's metadata
 	 * @param metadataKey
 	 * @param prototype
 	 * @returns
@@ -61,6 +61,6 @@ export class MetadataScanner {
 		} while (
 			(prototype = Reflect.getPrototypeOf(prototype)) &&
 			prototype !== Object.prototype
-			);
+		);
 	}
 }

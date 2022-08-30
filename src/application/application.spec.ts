@@ -1,23 +1,54 @@
-import 'reflect-metadata'
-import { Controller } from '@decorators/controller.decorator';
-import { ICanActivate, IPipeTransform } from "@interfaces/decorators";
-import { ExecutionContext } from "@context/execution-context";
-import { Reflector } from "@services/reflector.service";
-import { Injectable } from "@decorators/injectable.decorator";
-import { UseGuards } from "@decorators/use-guards.decorator";
-import { SetMetadata } from "@decorators/set-metadata.decorator";
-import { AfterControllerInit } from "@hooks/afterControllerInit";
-import { Tick } from "@decorators/tick.decorator";
-import { NetEvent } from "@decorators/net-event.decorator";
-import { UsePipes } from "@decorators/use-pipes.decorator";
-import { OnApplicationBootstrap } from "@hooks/onApplicationBootstrap";
-import { LocalEvent } from "@decorators/event.decorator";
-import { RegisterCommand } from '@decorators/register-command.decorator'
-import { Xiao } from "@decorators/xiao.decorator";
 import { XiaoApplication } from "@application/xiao";
+import { Reflector } from "@services/reflector.service";
+import { ExecutionContext } from "@context/execution-context";
+import { ICanActivate, IPipeTransform } from "@interfaces/decorators";
+import { Callback } from "@typings";
+import {
+	Xiao,
+	Controller,
+	Injectable,
+	LocalEvent,
+	NetEvent,
+	RegisterCommand,
+	SetMetadata,
+	Tick,
+	UseGuards,
+	UsePipes
+} from '@decorators';
+import { AfterControllerInit } from "@hooks/afterControllerInit";
 import { BeforeControllerInit } from "@hooks/beforeControllerInit";
+import { OnApplicationBootstrap } from "@hooks/onApplicationBootstrap";
+import { beforeAll } from "vitest";
+import { EventEmitter } from "@services/event-emitter.service";
 
 describe('Implement Xiao Application', () => {
+	const globals: any = global;
+	let emitter: EventEmitter;
+
+	beforeAll(() => {
+		globals.on = vi.fn((eventName: string, listener: Callback) =>
+			console.log('on', eventName, listener));
+
+		globals.onNet = vi.fn((eventName: string, listener: Callback) =>
+			console.log('onNet', eventName, listener));
+
+		globals.RegisterCommand = vi.fn((commandName: string, handler: Callback, restricted: boolean) =>
+			console.log('RegisterCommand', commandName, handler, restricted));
+
+		globals.setTick = vi.fn((handler: Callback) => console.log('setTick', handler));
+
+		globals.IsDuplicityVersion = vi.fn(() => true);
+
+		globals.emit = vi.fn((eventName: string, ...args: any[]) => {
+			console.log('emit', eventName, args);
+		});
+
+		globals.emitNet = vi.fn((eventName: string, ...args: any[]) => {
+			console.log('emitNet', eventName, ...args);
+		});
+
+		emitter = new EventEmitter();
+	})
 
 	class IsTrue implements ICanActivate {
 		canActivate(context: ExecutionContext): boolean | Promise<boolean> {
@@ -40,11 +71,8 @@ describe('Implement Xiao Application', () => {
 	}
 
 	@Controller()
-	class UserController
-		implements
-			BeforeControllerInit,
-			AfterControllerInit,
-			OnApplicationBootstrap {
+	class UserController implements BeforeControllerInit, AfterControllerInit, OnApplicationBootstrap {
+
 		@UseGuards(IsTrue)
 		@NetEvent('otherEvent')
 		@SetMetadata('multiply-by', 2)
@@ -53,24 +81,22 @@ describe('Implement Xiao Application', () => {
 			source: number,
 			@UsePipes(MultiplyPipe, MultiplyPipe) @UsePipes(MultiplyPipe) arg1: number
 		): Promise<void> {
-			console.log(arg1);
+			console.log(`event ${eventName} called with ${arg1}`);
 		}
 
 		@LocalEvent('event')
-		async event(
-			eventName: string,
-			source: number,
-			@UsePipes(MultiplyPipe, MultiplyPipe) arg1: number
-		): Promise<void> {
-			console.log(arg1);
+		async event(eventName: string, source: number, @UsePipes(MultiplyPipe, MultiplyPipe) arg1: number): Promise<void> {
+			console.log(`event ${eventName} called`);
 		}
 
 		@RegisterCommand('commandName', false)
 		async commandName(): Promise<void> {
+			console.log('commandName called');
 		}
 
 		@RegisterCommand('newCommand', true)
 		async newCommand(): Promise<void> {
+			console.log('newCommand called');
 		}
 
 		@Tick()
@@ -100,9 +126,26 @@ describe('Implement Xiao Application', () => {
 
 	describe('Xiao Application', () => {
 		it('should create a new application', async () => {
-			XiaoApplication.create(App).then(async (magnetarise) => {
-				expect(magnetarise).toBeDefined();
+			XiaoApplication.create(App).then(async (xiaoApp) => {
+				await xiaoApp.start();
+				expect(xiaoApp).toBeDefined();
 			});
 		});
+
+		it('should emitNet: "otherEvent"', () => {
+			const spy = vi.spyOn(emitter, 'emitNet');
+			emitter.emitNet('otherEvent', 1, 2, 3);
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should emit: "event"', () => {
+			const spy = vi.spyOn(emitter, 'emit');
+			emitter.emit('event', 1, 2, 3);
+			expect(spy).toHaveBeenCalled();
+		});
 	});
+
+	afterAll(() => {
+		vi.restoreAllMocks();
+	})
 });
