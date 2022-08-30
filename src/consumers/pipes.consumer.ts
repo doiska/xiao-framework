@@ -1,8 +1,9 @@
-import { InjectionToken } from "tsyringe";
-import { ExecutionContext } from "@context/execution-context";
+
 import { XiaoContainer } from "@containers/xiao.container";
-import { MaybePromise } from "@typings/utils";
+import { ExecutionContext } from "@context/execution-context";
 import { IPipeTransform } from "@interfaces/decorators";
+import { MaybePromise } from "@typings";
+import { InjectionToken } from "tsyringe";
 
 export class PipesConsumer {
 
@@ -22,7 +23,7 @@ export class PipesConsumer {
 			}
 
 			return new ExecutionContext(args, executionContext.getClass(), executionContext.getHandler());
-		}
+		};
 	}
 
 	static async pickResult<T>(result: MaybePromise<T>): Promise<T> {

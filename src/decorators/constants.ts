@@ -6,4 +6,4 @@ export const PIPES_METADATA = '__pipes__';
 export const EVENT_METADATA = '__event__';
 export const EVENT_NET_METADATA = '__net_event__';
 export const REGISTER_COMMANDS_METADATA = '__register_commands__';
-export const TICKS_METADATA = '__tick__'
+export const TICKS_METADATA = '__tick__';

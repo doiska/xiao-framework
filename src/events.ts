@@ -28,4 +28,4 @@ export const NATIVE_EVENTS = [
 	'mumbleDisconnected',
 	'onClientResourceStart',
 	'onClientResourceStop',
-]
+];

@@ -1,6 +1,6 @@
 import { IPipeTransform } from "@interfaces/decorators";
-import { extendMapMetadata } from "@utils/extend-metadata.utils";
 import { PIPES_METADATA } from "@decorators/constants";
+import { extendMapMetadata } from "@utils/extend-metadata.utils";
 
 export function UsePipes(
 	...pipes: (IPipeTransform | Function)[]

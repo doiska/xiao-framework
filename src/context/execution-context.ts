@@ -1,10 +1,10 @@
-import { Type } from '@typings/index';
+import { Type, Callback } from '@typings';
 
 export class ExecutionContext {
 	constructor(
 		private readonly args: unknown[],
-		private readonly _constructorReference: Type<any> = null,
-		private readonly _handler: Function = null) {}
+		private readonly _constructorReference: Type = null,
+		private readonly _handler: Callback = null) {}
 
 	getEventName(): string {
 		return this.getArgByIndex<string>(0);
@@ -18,7 +18,7 @@ export class ExecutionContext {
 		return this._constructorReference;
 	}
 
-	getHandler(): Function {
+	getHandler(): Callback {
 		return this._handler;
 	}
 

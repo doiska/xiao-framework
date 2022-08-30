@@ -1,5 +1,5 @@
-import { setMetadata } from "@utils/extend-metadata.utils";
 import { TICKS_METADATA } from "@decorators/constants";
+import { setMetadata } from "@utils/extend-metadata.utils";
 
 export function Tick(): MethodDecorator {
 	return (
@@ -9,5 +9,5 @@ export function Tick(): MethodDecorator {
 	) => {
 		setMetadata(TICKS_METADATA, true, descriptor.value);
 		return descriptor;
-	}
+	};
 }

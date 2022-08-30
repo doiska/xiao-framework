@@ -7,10 +7,11 @@
 			"@containers/*": ["containers/*"],
 			"@context/*": ["context/*"],
 			"@decorators/*": ["decorators/*"],
+			"@decorators": ["decorators"],
 			"@hooks/*": ["hooks/*"],
 			"@interfaces/*": ["interfaces/*"],
 			"@services/*": ["services/*"],
-			"@typings/*": ["typings/*"],
+			"@typings": ["typings/index"],
 			"@utils/*": ["utils/*"],
 			"~/*": ["*"]
 		}

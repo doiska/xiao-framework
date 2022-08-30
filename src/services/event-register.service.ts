@@ -1,5 +1,5 @@
-import { Injectable } from "@decorators/injectable.decorator";
-import { EventCallback } from "@typings/event-callback.interface";
+import { EventCallback } from "@typings";
+import { Injectable } from "@decorators";
 import { isNativeEvent } from "@utils/shared.utils";
 
 @Injectable()
@@ -41,7 +41,7 @@ export class EventRegisterService {
 	on(eventName: string, callback: EventCallback): void {
 		if(isNativeEvent(eventName)) {
 			on(eventName, callback);
-        } else {
+		} else {
 			on(`fighter:${eventName}`, callback);
 		}
 	}

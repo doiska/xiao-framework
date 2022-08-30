@@ -1,8 +1,9 @@
-import { InjectionToken } from "tsyringe";
-import { ExecutionContext } from "@context/execution-context";
+
 import { XiaoContainer } from "@containers/xiao.container";
+import { ExecutionContext } from "@context/execution-context";
 import { ICanActivate } from "@interfaces/decorators";
-import { MaybePromise } from "@typings/utils";
+import { MaybePromise } from "@typings";
+import { InjectionToken } from "tsyringe";
 
 export class GuardsConsumer {
 	static guardsFn(metadata: InjectionToken[]) {
@@ -16,7 +17,7 @@ export class GuardsConsumer {
 				}
 			}
 			return true;
-		}
+		};
 	}
 
 	static async pickResult(result: MaybePromise<boolean>) {

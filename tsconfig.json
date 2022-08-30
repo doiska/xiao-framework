@@ -13,7 +13,6 @@
 		"types": [
 			"@citizenfx/server",
 			"@citizenfx/client",
-			"@types/jest",
 			"@types/node",
 			"reflect-metadata",
 			"vitest/globals"
@@ -31,6 +30,7 @@
 	],
 	"exclude": [
 		"vitest.config.ts",
-		"test-setup.ts"
+		"test-setup.ts",
+		"node_modules/**/*"
 	]
 }

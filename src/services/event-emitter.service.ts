@@ -1,8 +1,8 @@
-import { Injectable } from "@decorators/injectable.decorator";
-import { EventCallback } from "@typings/event-callback.interface";
-import { isNativeEvent, isServer, isInteger } from "@utils/shared.utils";
 import { XiaoApplication } from "@application/xiao";
 import { InterceptorsConsumer } from "@consumers/interceptors.consumer";
+import { EventCallback } from "@typings";
+import { Injectable } from "@decorators/injectable.decorator";
+import { isNativeEvent, isServer, isInteger } from "@utils/shared.utils";
 
 @Injectable()
 export class EventEmitter {
@@ -37,6 +37,7 @@ export class EventEmitter {
 				return;
 			}
 
+			// eslint-disable-next-line prefer-const
 			let [target, ...params] = args;
 
 			if (!isInteger(target)) {

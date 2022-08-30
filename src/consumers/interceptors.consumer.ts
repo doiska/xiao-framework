@@ -1,7 +1,7 @@
-import { iterate } from "iterare";
 import { XiaoContainer } from "@containers/xiao.container";
-import { InjectionToken } from "tsyringe";
 import { Intercept } from "@interfaces/decorators";
+import { iterate } from "iterare";
+import { InjectionToken } from "tsyringe";
 
 export class InterceptorsConsumer {
 
@@ -10,7 +10,7 @@ export class InterceptorsConsumer {
 
 	static generate(): void {
 		const interceptors = iterate(XiaoContainer.interceptors).toArray();
-		InterceptorsConsumer.interceptIn = InterceptorsConsumer.inFn(interceptors.slice().reverse())
+		InterceptorsConsumer.interceptIn = InterceptorsConsumer.inFn(interceptors.slice().reverse());
 		InterceptorsConsumer.interceptOut = InterceptorsConsumer.outFn(interceptors);
 	}
 
@@ -31,7 +31,7 @@ export class InterceptorsConsumer {
 				args = await InterceptorsConsumer.pickResult(concreteInterceptor.out(...args));
 			}
 			return args;
-		}
+		};
 	}
 
 	static async pickResult(result: any[] | Promise<any[]>): Promise<any[]> {

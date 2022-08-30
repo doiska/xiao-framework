@@ -1,6 +1,6 @@
-import { extendArrayMetadata } from "@utils/extend-metadata.utils";
-import { GUARDS_METADATA } from "@decorators/constants";
 import { ICanActivate } from "@interfaces/decorators/can-activate.interface";
+import { GUARDS_METADATA } from "@decorators/constants";
+import { extendArrayMetadata } from "@utils/extend-metadata.utils";
 
 export function UseGuards(...guards: (ICanActivate | Function)[]): MethodDecorator & ClassDecorator {
 	return (
@@ -15,5 +15,5 @@ export function UseGuards(...guards: (ICanActivate | Function)[]): MethodDecorat
 
 		extendArrayMetadata(GUARDS_METADATA, guards, target);
 		return target;
-	}
+	};
 }

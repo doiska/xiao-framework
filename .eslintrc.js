@@ -3,27 +3,39 @@ module.exports = {
 		node: true,
 		es6: true
 	},
-	plugins: ['eslint-plugin-import-helpers'],
-	extends: ['eslint:recommended'],
+	parser: "@typescript-eslint/parser",
+	plugins: [
+		'@typescript-eslint',
+		'eslint-plugin-import-helpers'
+	],
+	extends: [
+		'eslint:recommended',
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
 	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module'
+		ecmaVersion: 2022,
+		sourceType: 'module',
 	},
 	rules: {
+		"@typescript-eslint/no-unused-vars": "off",
 		'import-helpers/order-imports': [
 			'warn',
 			{
-				newlinesBetween: 'always',
+				newlinesBetween: 'never',
 				groups: [
-					'module',
 					'/^@application/',
 					'/^@containers/',
 					'/^@consumers/',
 					'/^@services/',
 					'/^@context/',
-					'/^@interfaces/',
-					'/^@typings/',
+					[
+						'/^@interfaces/',
+						'/^@typings/'
+					],
+					'/^@decorators/',
 					'/^@utils/',
+					'module',
 					[
 						'parent',
 						'sibling',
@@ -32,6 +44,18 @@ module.exports = {
 				],
 				alphabetize: { order: 'asc', ignoreCase: true },
 			},
+		],
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"semi": [
+			"error",
+			"always"
 		]
 	}
-}
+};

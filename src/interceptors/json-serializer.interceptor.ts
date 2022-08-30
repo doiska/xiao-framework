@@ -1,5 +1,5 @@
-import { Injectable } from "@decorators/injectable.decorator";
 import { Intercept } from "@interfaces/decorators";
+import { Injectable } from "@decorators/injectable.decorator";
 
 @Injectable()
 export class JsonSerializerInterceptor implements Intercept {
@@ -13,9 +13,9 @@ export class JsonSerializerInterceptor implements Intercept {
 			}
 
 			return value;
-		}
+		};
 
-		return args.map((value: any) => JSON.parse(value, parseValueWithDate))
+		return args.map((value: any) => JSON.parse(value, parseValueWithDate));
 	}
 
 	out(...args: any[]): any[] {

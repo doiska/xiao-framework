@@ -1,9 +1,9 @@
 import 'reflect-metadata'
-import { IPipeTransform } from "@interfaces/decorators";
-import { ExecutionContext } from "@context/execution-context";
-import { MaybePromise } from "@typings/utils";
 import { InjectionToken } from "tsyringe";
 import { PipesConsumer } from "@consumers/pipes.consumer";
+import { ExecutionContext } from "@context/execution-context";
+import { IPipeTransform } from "@interfaces/decorators";
+import { MaybePromise } from "@typings";
 
 describe('PipesConsumer', () => {
 
