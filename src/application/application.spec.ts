@@ -126,22 +126,20 @@ describe('Implement Xiao Application', () => {
 
 	describe('Xiao Application', () => {
 		it('should create a new application', async () => {
-			XiaoApplication.create(App).then(async (xiaoApp) => {
-				await xiaoApp.start();
-				expect(xiaoApp).toBeDefined();
-			});
+			const x = XiaoApplication.create(App);
+			await x.start();
 		});
 
 		it('should emitNet: "otherEvent"', () => {
 			const spy = vi.spyOn(emitter, 'emitNet');
 			emitter.emitNet('otherEvent', 1, 2, 3);
-			expect(spy).toHaveBeenCalled();
+			expect(spy).toHaveBeenCalledWith('otherEvent', 1, 2, 3);
 		});
 
 		it('should emit: "event"', () => {
 			const spy = vi.spyOn(emitter, 'emit');
 			emitter.emit('event', 1, 2, 3);
-			expect(spy).toHaveBeenCalled();
+			expect(spy).toHaveBeenCalledWith('event', 1, 2, 3);
 		});
 	});
 

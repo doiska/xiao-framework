@@ -5,5 +5,5 @@ export class XiaoContainer {
 
 	static interceptors: Set<InjectionToken> = new Set([]);
 	static controllers: Set<InjectionToken> = new Set([]);
-	static providers: Set<InjectionToken> = new Set();
+	static providers: Set<InjectionToken> = new Set([]);
 }

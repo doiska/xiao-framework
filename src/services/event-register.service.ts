@@ -20,6 +20,10 @@ export class EventRegisterService {
 	 * @param callback callback triggered
 	 */
 	onNet(eventName: string, callback: EventCallback): void {
+
+		console.log(`[EventRegisterService] Registering onNet ${eventName}`);
+
+
 		if(isNativeEvent(eventName)) {
 			onNet(eventName, callback);
 		} else {
@@ -39,6 +43,9 @@ export class EventRegisterService {
 	 * @param callback callback triggered
 	 */
 	on(eventName: string, callback: EventCallback): void {
+
+		console.log(`[EventRegisterService] Registering event ${eventName}`);
+
 		if(isNativeEvent(eventName)) {
 			on(eventName, callback);
 		} else {

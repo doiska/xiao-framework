@@ -1,1 +1,1 @@
-console.log('Teste');
+export * from './application/xiao';

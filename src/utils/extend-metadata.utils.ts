@@ -24,6 +24,6 @@ export function extendMapMetadata<K, V extends Array<unknown>>(key: string, mapK
 	}
 }
 
-export function setMetadata<T>(key: string, metadata: T, target: Object) {
+export function setMetadata<T>(key: string, metadata: T, target: Record<string, unknown>) {
 	Reflect.defineMetadata(key, metadata, target);
 }

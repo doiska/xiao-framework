@@ -1,0 +1,471 @@
+{
+  "numTotalTestSuites": 27,
+  "numPassedTestSuites": 27,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 33,
+  "numPassedTests": 33,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1661879955725,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "@SetMetadata"
+          ],
+          "fullName": " @SetMetadata should enhance class with expected metadata",
+          "status": "passed",
+          "title": "should enhance class with expected metadata",
+          "duration": 3,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "@SetMetadata"
+          ],
+          "fullName": " @SetMetadata should enhance method with expected metadata",
+          "status": "passed",
+          "title": "should enhance method with expected metadata",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880044516,
+      "endTime": 1661880044520,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/decorators/set-metadata.decorator.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "in-func"
+          ],
+          "fullName": " InterceptorsConsumer in-func should create a new in-function",
+          "status": "passed",
+          "title": "should create a new in-function",
+          "duration": 3,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "in-func"
+          ],
+          "fullName": " InterceptorsConsumer in-func should call returns 4",
+          "status": "passed",
+          "title": "should call returns 4",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "in-func"
+          ],
+          "fullName": " InterceptorsConsumer in-func should call returns 8",
+          "status": "passed",
+          "title": "should call returns 8",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "out-func"
+          ],
+          "fullName": " InterceptorsConsumer out-func should create a new out-function",
+          "status": "passed",
+          "title": "should create a new out-function",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "out-func"
+          ],
+          "fullName": " InterceptorsConsumer out-func should call returns 2",
+          "status": "passed",
+          "title": "should call returns 2",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer",
+            "out-func"
+          ],
+          "fullName": " InterceptorsConsumer out-func should call returns 1",
+          "status": "passed",
+          "title": "should call returns 1",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer"
+          ],
+          "fullName": " InterceptorsConsumer should pick from promise",
+          "status": "passed",
+          "title": "should pick from promise",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer"
+          ],
+          "fullName": " InterceptorsConsumer should pick from array",
+          "status": "passed",
+          "title": "should pick from array",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "InterceptorsConsumer"
+          ],
+          "fullName": " InterceptorsConsumer should generate interceptors",
+          "status": "passed",
+          "title": "should generate interceptors",
+          "duration": 6,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880044557,
+      "endTime": 1661880044575,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/interceptors.consumer.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "JsonSerializerInterceptor"
+          ],
+          "fullName": " JsonSerializerInterceptor should parse date string to instance of date object",
+          "status": "passed",
+          "title": "should parse date string to instance of date object",
+          "duration": 4,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880044559,
+      "endTime": 1661880044563,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/interceptors/json-serializer.interceptor.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "GuardsConsumer"
+          ],
+          "fullName": " GuardsConsumer should return true",
+          "status": "passed",
+          "title": "should return true",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GuardsConsumer"
+          ],
+          "fullName": " GuardsConsumer should return false",
+          "status": "passed",
+          "title": "should return false",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GuardsConsumer"
+          ],
+          "fullName": " GuardsConsumer should pickResult from promise",
+          "status": "passed",
+          "title": "should pickResult from promise",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GuardsConsumer"
+          ],
+          "fullName": " GuardsConsumer should pickResult from boolean",
+          "status": "passed",
+          "title": "should pickResult from boolean",
+          "duration": 0,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880045202,
+      "endTime": 1661880045208,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/guards.consumer.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should create a new pipesFn",
+          "status": "passed",
+          "title": "should create a new pipesFn",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should return 4 as result",
+          "status": "passed",
+          "title": "should return 4 as result",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should return 0 as result",
+          "status": "passed",
+          "title": "should return 0 as result",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should return 40 as result",
+          "status": "passed",
+          "title": "should return 40 as result",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should pick from promise",
+          "status": "passed",
+          "title": "should pick from promise",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PipesConsumer"
+          ],
+          "fullName": " PipesConsumer should pick from value",
+          "status": "passed",
+          "title": "should pick from value",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880045217,
+      "endTime": 1661880045223,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/pipes.consumer.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "on"
+          ],
+          "fullName": " EventRegister on should register event",
+          "status": "passed",
+          "title": "should register event",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "on"
+          ],
+          "fullName": " EventRegister on should register native event",
+          "status": "passed",
+          "title": "should register native event",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "onNet"
+          ],
+          "fullName": " EventRegister onNet should register eventName",
+          "status": "passed",
+          "title": "should register eventName",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "onNet"
+          ],
+          "fullName": " EventRegister onNet should register native event",
+          "status": "passed",
+          "title": "should register native event",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880058876,
+      "endTime": 1661880058882,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-register.service.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "server-emitter",
+            "emit"
+          ],
+          "fullName": " EventEmitter server-emitter emit should emit eventName from server-side",
+          "status": "passed",
+          "title": "should emit eventName from server-side",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "server-emitter",
+            "emitNet"
+          ],
+          "fullName": " EventEmitter server-emitter emitNet should emitNet eventName from server-side",
+          "status": "passed",
+          "title": "should emitNet eventName from server-side",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "client-emitter",
+            "emit"
+          ],
+          "fullName": " EventEmitter client-emitter emit should emit eventName from client-side",
+          "status": "passed",
+          "title": "should emit eventName from client-side",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "client-emitter",
+            "emitNet"
+          ],
+          "fullName": " EventEmitter client-emitter emitNet should emitNet eventName from client-side",
+          "status": "passed",
+          "title": "should emitNet eventName from client-side",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880058897,
+      "endTime": 1661880058906,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-emitter.service.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Implement Xiao Application",
+            "Xiao Application"
+          ],
+          "fullName": " Implement Xiao Application Xiao Application should create a new application",
+          "status": "passed",
+          "title": "should create a new application",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Implement Xiao Application",
+            "Xiao Application"
+          ],
+          "fullName": " Implement Xiao Application Xiao Application should emitNet: \"otherEvent\"",
+          "status": "passed",
+          "title": "should emitNet: \"otherEvent\"",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Implement Xiao Application",
+            "Xiao Application"
+          ],
+          "fullName": " Implement Xiao Application Xiao Application should emit: \"event\"",
+          "status": "passed",
+          "title": "should emit: \"event\"",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1661880058906,
+      "endTime": 1661880058921,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/application/application.spec.ts"
+    }
+  ]
+}

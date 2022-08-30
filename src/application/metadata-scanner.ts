@@ -13,7 +13,7 @@ export class MetadataScanner {
 	}
 
 	/**
-	 * Retrieve method's metadata
+	 * Retreive method's metadata
 	 * @param metadataKey
 	 * @param prototype
 	 * @param target
@@ -24,6 +24,7 @@ export class MetadataScanner {
 		prototype: object,
 		target: string
 	): T {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		return Reflect.getMetadata(metadataKey, prototype[target]);
 	}
@@ -43,7 +44,7 @@ export class MetadataScanner {
 	 * IterableIterator to get all method's name
 	 * @param prototype
 	 */
-	static *getAllFilteredMethodNames(
+	static* getAllFilteredMethodNames(
 		prototype: object
 	): IterableIterator<string> {
 		const isMethod = (prop: string) => {
@@ -51,6 +52,7 @@ export class MetadataScanner {
 			if (descriptor.set || descriptor.get) {
 				return false;
 			}
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			return !isConstructor(prop) && isFunction(prototype[prop]);
 		};
@@ -61,6 +63,6 @@ export class MetadataScanner {
 		} while (
 			(prototype = Reflect.getPrototypeOf(prototype)) &&
 			prototype !== Object.prototype
-		);
+		); 
 	}
 }

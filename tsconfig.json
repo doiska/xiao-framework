@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"noImplicitAny": true,
 		"baseUrl": "./src",
+		"outDir": "./dist",
 		"module": "commonjs",
 		"target": "es2016",
 		"allowJs": false,
@@ -22,7 +23,8 @@
 		"experimentalDecorators": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"noEmit": true
+		"declaration": true,
+		"skipLibCheck": true
 	},
 	"include": [
 		"./src/**/*.ts",
@@ -31,6 +33,8 @@
 	"exclude": [
 		"vitest.config.ts",
 		"test-setup.ts",
-		"node_modules/**/*"
+		"node_modules/**/*",
+		"dist/**/*",
+		"./src/**/*.spec.ts"
 	]
 }

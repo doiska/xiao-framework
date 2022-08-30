@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { EventRegisterService } from "@services/event-register.service";
+import { logger } from "@utils/logger";
 
 describe('EventRegister', () => {
 
@@ -9,6 +10,7 @@ describe('EventRegister', () => {
 	beforeAll(() => {
 		globals.on = vi.fn((eventName: string, listener: Function) => {});
 		globals.onNet = vi.fn((eventName: string, listener: Function) => {})
+		globals.logger = logger;
 	})
 
 	beforeEach(() => {

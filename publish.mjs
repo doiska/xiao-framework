@@ -15,9 +15,17 @@ const execAsync = util.promisify(exec);
 		await execAsync('rd /s /q dist');
 	}
 
-	execAsync('tsup')
-		.then(() => execAsync('copy package.json dist'))
-		.then(() => execAsync('cd dist && npm publish --registry http://51.81.86.237:4000/'))
-		.then(() => console.log(chalk.green('Successfully build and sent to verdaccio.')))
-		.catch(err => console.error(chalk.red(err)))
+	const commandChain = [
+		'tsc && resolve-tspaths',
+		'copy package.json dist',
+		'copy README.md dist',
+		'cd dist && npm publish --registry http://51.81.86.237:4000/',
+	];
+
+	const command = commandChain.join(' && ');
+	execAsync(command).then(({ stdout, stderr }) => {
+		console.log(chalk.green(stdout));
+		console.error(chalk.red(stderr));
+	});
+
 })();

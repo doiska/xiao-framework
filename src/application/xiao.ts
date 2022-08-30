@@ -15,34 +15,57 @@ import {
 	TICKS_METADATA,
 	PIPES_METADATA
 } from "@decorators/constants";
+import { logger } from "@utils/logger";
 import { isFunction, isNativeEvent } from "@utils/shared.utils";
 import { iterate } from "iterare";
 import { InjectionToken } from "tsyringe";
 
 export class XiaoApplication {
-
 	private static instance: XiaoApplication;
 
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	private constructor() {}
+
+	/**
+	 * Create an instance of XiaoApplication
+	 *
+	 * @returns {XiaoApplication}
+	 */
 	public static create(_bootstrap: Type): Promise<XiaoApplication> {
+
+		logger.info(`Creating XiaoApplication...`);
+
 		if (!XiaoApplication.instance) {
+			logger.info(`Creating XiaoApplication instance...`);
 			XiaoApplication.instance = new XiaoApplication();
 		}
+
+		logger.info(`Returning XiaoApplication instance...`, XiaoApplication.instance);
 
 		return Promise.resolve(XiaoApplication.instance);
 	}
 
+	/**
+	 * Add a global interceptor to the application
+	 *
+	 * @param interceptor An interceptor to be added to the application
+	 * @returns void
+	 */
 	async intercept(interceptor: Interceptor): Promise<void> {
 		XiaoContainer.interceptors.add(interceptor);
+
 		return Promise.resolve();
 	}
 
 	async start(): Promise<void> {
 		InterceptorsConsumer.generate();
 
-		for (const controllerToken of iterate(XiaoContainer.controllers)) {
-			const controller = XiaoContainer.container.resolve<Controller>(controllerToken);
+		logger.info(`Registering controllers...`, JSON.stringify(XiaoContainer.controllers));
 
-			console.log(`[Xiao] Registering controller ${controller.constructor.name}`);
+		for (const controllerToken of iterate(XiaoContainer.controllers)) {
+			const controller = XiaoContainer.container.resolve(controllerToken);
+
+			logger.info(`Registering controller: ${controller.constructor.name}`);
 
 			if (isFunction(controller.beforeControllerInit)) {
 				await controller.beforeControllerInit();
@@ -53,52 +76,100 @@ export class XiaoApplication {
 			if (isFunction(controller.afterControllerInit)) {
 				await controller.afterControllerInit();
 			}
+		}
 
+		for (const controllerToken of iterate(XiaoContainer.controllers)) {
+			const controller =
+				XiaoContainer.container.resolve(controllerToken);
 			if (isFunction(controller.onApplicationBootstrap)) {
-				await controller.onApplicationBootstrap();
+				controller.onApplicationBootstrap();
 			}
 		}
 	}
 
 	private async generateController(controller: Controller) {
-		const eventRegisterService = XiaoContainer.container.resolve(EventRegisterService);
+		const eventRegistrar =
+			XiaoContainer.container.resolve(EventRegisterService);
 
 		for (const methodName of MetadataScanner.getMethodNames(controller)) {
+			const classMetadata = MetadataScanner.getClassMetadata<InjectionToken[]>(
+				GUARDS_METADATA,
+				controller
+			);
+			const guardsMetadata = MetadataScanner.getMethodMetadata<InjectionToken[]>(GUARDS_METADATA, controller, methodName);
+			const guardFn = GuardsConsumer.guardsFn([
+				...(classMetadata || []),
+				...(guardsMetadata || []),
+			]);
 
-			const classMetadata = MetadataScanner.getClassMetadata<InjectionToken[]>(GUARDS_METADATA, controller) || [];
+			const pipesMetada = MetadataScanner.getMethodMetadata<Map<number, InjectionToken[]>>(PIPES_METADATA, controller, methodName);
+			const pipeFn = PipesConsumer.pipesFn(pipesMetada);
 
-			const guardsMetadata = MetadataScanner.getMethodMetadata<InjectionToken[]>(GUARDS_METADATA, controller, methodName) || [];
-			const guardFn = GuardsConsumer.guardsFn([...classMetadata, ...guardsMetadata]);
+			const netEventsMetadata = MetadataScanner.getMethodMetadata<string[]>(
+				EVENT_NET_METADATA,
+				controller,
+				methodName
+			);
+			if (netEventsMetadata) {
+				for (const eventName of netEventsMetadata) {
+					eventRegistrar.onNet(eventName, async (...args: any[]) => {
+						if (!isNativeEvent(eventName) && InterceptorsConsumer.interceptIn) {
+							args = await InterceptorsConsumer.interceptIn(...args);
+						}
 
-			const pipesMetadata = MetadataScanner.getMethodMetadata<Map<number, InjectionToken[]>>(PIPES_METADATA, controller, methodName);
-			const pipeFn = PipesConsumer.pipesFn(pipesMetadata);
+						let executionContext = new ExecutionContext(
+							[eventName, source || -1, ...args],
+							controller,
+							controller[methodName]
+						);
 
-			const processEvent = async (eventName: string, ...args: unknown[]) => {
-				if (!isNativeEvent(eventName) && InterceptorsConsumer.interceptIn) {
-					args = await InterceptorsConsumer.interceptIn(...args);
+						if (guardsMetadata && !(await guardFn(executionContext))) {
+							return;
+						}
+
+						if (pipesMetada) {
+							executionContext = await pipeFn(executionContext);
+						}
+
+						await controller[methodName](...executionContext.getArgs());
+					});
 				}
+			}
 
-				let executionContext = new ExecutionContext(
-					[eventName, source || -1, ...args],
-					controller,
-					controller[methodName as keyof Controller]
-				);
+			const eventNames = MetadataScanner.getMethodMetadata<string[]>(
+				EVENT_METADATA,
+				controller,
+				methodName
+			);
+			if (eventNames) {
+				for (const eventName of eventNames) {
+					eventRegistrar.on(eventName, async (...args: any[]) => {
+						if (!isNativeEvent(eventName) && InterceptorsConsumer.interceptIn) {
+							args = await InterceptorsConsumer.interceptIn(...args);
+						}
 
-				executionContext = await this.prepareExecutionContext(executionContext, guardFn, pipeFn);
+						let executionContext = new ExecutionContext(
+							[eventName, source || -1, ...args],
+							controller,
+							controller[methodName]
+						);
 
-				controller[methodName as keyof Controller](...executionContext.getArgs());
-			};
+						if (guardsMetadata && !(await guardFn(executionContext))) {
+							return;
+						}
 
-			const eventsMetadata = MetadataScanner.getMethodMetadata<string[]>(EVENT_METADATA, controller, methodName);
-			eventsMetadata?.forEach((event) => eventRegisterService.on(event, async (...args: never[]) => processEvent(event, args)));
+						if (pipesMetada) {
+							executionContext = await pipeFn(executionContext);
+						}
 
-			const netEventsMetadata = MetadataScanner.getMethodMetadata<string[]>(EVENT_NET_METADATA, controller, methodName);
-			netEventsMetadata?.forEach(event => eventRegisterService.onNet(event, async (...args: never[]) => processEvent(event, args)));
+						await controller[methodName](...executionContext.getArgs());
+					});
+				}
+			}
 
 			const registerCommandsMetadata = MetadataScanner.getMethodMetadata<IRegisterCommandMetadata[]>(REGISTER_COMMANDS_METADATA, controller, methodName);
 			if (registerCommandsMetadata) {
 				for (const registerCommandMetadata of registerCommandsMetadata) {
-					console.log(`[Xiao] Registering command ${registerCommandMetadata.commandName}`);
 					RegisterCommand(
 						registerCommandMetadata.commandName,
 						async (source: number, ...args: any[]) => {
@@ -112,7 +183,7 @@ export class XiaoApplication {
 								return;
 							}
 
-							if (pipesMetadata) {
+							if (pipesMetada) {
 								executionContext = await pipeFn(executionContext);
 							}
 
@@ -123,27 +194,15 @@ export class XiaoApplication {
 				}
 			}
 
-			const ticksMetadata = MetadataScanner.getMethodMetadata<string[]>(TICKS_METADATA, controller, methodName);
+			const ticksMetadata = MetadataScanner.getMethodMetadata<string[]>(
+				TICKS_METADATA,
+				controller,
+				methodName
+			);
 			if (ticksMetadata) {
-				setTick(controller[methodName as keyof Controller].bind(controller));
+				setTick(controller[methodName].bind(controller));
 			}
 		}
-	}
-
-	private async prepareExecutionContext(
-		context: ExecutionContext,
-		guardFn: (executionContext: ExecutionContext) => Promise<boolean>,
-		pipeFn: (executionContext: ExecutionContext) => Promise<ExecutionContext>
-	) {
-		if (guardFn && !(await guardFn(context))) {
-			return;
-		}
-
-		if (pipeFn) {
-			context = await pipeFn(context);
-		}
-
-		return context;
 	}
 
 	static hasInterceptIn(): boolean {
@@ -151,7 +210,7 @@ export class XiaoApplication {
 	}
 
 	static hasInterceptOut(): boolean {
-		return !!InterceptorsConsumer.interceptOut;
+		return !!InterceptorsConsumer.interceptIn;
 	}
 
 	static hasInterceptors(): boolean {
