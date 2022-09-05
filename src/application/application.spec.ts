@@ -18,8 +18,10 @@ import {
 import { AfterControllerInit } from "@hooks/afterControllerInit";
 import { BeforeControllerInit } from "@hooks/beforeControllerInit";
 import { OnApplicationBootstrap } from "@hooks/onApplicationBootstrap";
-import { beforeAll } from "vitest";
+import { beforeAll, expect } from "vitest";
 import { EventEmitter } from "@services/event-emitter.service";
+import { Export } from "@decorators/exports.decorator";
+import exp = require("constants");
 
 describe('Implement Xiao Application', () => {
 	const globals: any = global;
@@ -46,6 +48,7 @@ describe('Implement Xiao Application', () => {
 		globals.emitNet = vi.fn((eventName: string, ...args: any[]) => {
 			console.log('emitNet', eventName, ...args);
 		});
+
 
 		emitter = new EventEmitter();
 	})
@@ -104,6 +107,11 @@ describe('Implement Xiao Application', () => {
 			console.log('OnTick called');
 		}
 
+		@Export('test')
+		expoTest() {
+			console.log(`invoke exp`)
+		}
+
 		afterControllerInit(): void {
 			console.log('afterControllerInit');
 		}
@@ -126,8 +134,7 @@ describe('Implement Xiao Application', () => {
 
 	describe('Xiao Application', () => {
 		it('should create a new application', async () => {
-			const x = XiaoApplication.create(App);
-			await x.start();
+			XiaoApplication.create(App).then(x => x.start())
 		});
 
 		it('should emitNet: "otherEvent"', () => {
@@ -140,6 +147,10 @@ describe('Implement Xiao Application', () => {
 			const spy = vi.spyOn(emitter, 'emit');
 			emitter.emit('event', 1, 2, 3);
 			expect(spy).toHaveBeenCalledWith('event', 1, 2, 3);
+		});
+
+		it('should export method', () => {
+			console.log(globals.exports);
 		});
 	});
 
