@@ -32,33 +32,33 @@ describe('PipesConsumer', () => {
 	});
 
 	it('should return 4 as result', async () => {
-		const pipesMetadata = new Map<number, InjectionToken[]>([[2, [MultiplyByTwo, MultiplyByTwo]]]);
+		const pipesMetadata = new Map<number, InjectionToken[]>([[0, [MultiplyByTwo, MultiplyByTwo]]]);
 		const pipesFn = PipesConsumer.pipesFn(pipesMetadata);
 
-		const context = new ExecutionContext(['eventName', 1, 1]);
+		const context = new ExecutionContext('eventName', [1, 1]);
 		const result = await pipesFn(context);
 
-		expect(result.getArgByIndex(2)).toBe(4);
+		expect(result.getArgByIndex(0)).toBe(4);
 	});
 
 	it('should return 0 as result', async () => {
-		const pipesMetadata = new Map<number, InjectionToken[]>([[2, [PromiseZero]]]);
+		const pipesMetadata = new Map<number, InjectionToken[]>([[0, [PromiseZero]]]);
 		const pipesFn = PipesConsumer.pipesFn(pipesMetadata);
 
-		const context = new ExecutionContext(['eventName', 1, 1]);
+		const context = new ExecutionContext('eventName', [1, 1]);
 		const result = await pipesFn(context);
 
-		expect(result.getArgByIndex(2)).toBe(0);
+		expect(result.getArgByIndex(0)).toBe(0);
 	});
 
 	it('should return 40 as result', async () => {
-		const pipesMetadata = new Map<number, InjectionToken[]>([[2, [MultiplyByTwo, MultiplyByTwenty]]]);
+		const pipesMetadata = new Map<number, InjectionToken[]>([[0, [MultiplyByTwo, MultiplyByTwenty]]]);
 		const pipesFn = PipesConsumer.pipesFn(pipesMetadata);
 
-		const context = new ExecutionContext(['eventName', 1, 1]);
+		const context = new ExecutionContext('eventName', [1, 1]);
 		const result = await pipesFn(context);
 
-		expect(result.getArgByIndex(2)).toBe(40);
+		expect(result.getArgByIndex(0)).toBe(40);
 	});
 
 	it('should pick from promise', async () => {

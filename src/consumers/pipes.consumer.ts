@@ -22,7 +22,7 @@ export class PipesConsumer {
 				}
 			}
 
-			return new ExecutionContext(args, executionContext.getClass(), executionContext.getHandler());
+			return new ExecutionContext(executionContext.getEventName(), args, executionContext.getClass(), executionContext.getHandler());
 		};
 	}
 

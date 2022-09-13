@@ -7,8 +7,8 @@ import {
 	Xiao,
 	Controller,
 	Injectable,
-	LocalEvent,
-	NetEvent,
+	ClientEvent,
+	ServerEvent,
 	RegisterCommand,
 	SetMetadata,
 	Tick,
@@ -21,13 +21,16 @@ import { OnApplicationBootstrap } from "@hooks/onApplicationBootstrap";
 import { beforeAll, expect } from "vitest";
 import { EventEmitter } from "@services/event-emitter.service";
 import { Export } from "@decorators/exports.decorator";
-import exp = require("constants");
 
 describe('Implement Xiao Application', () => {
 	const globals: any = global;
 	let emitter: EventEmitter;
 
+	globals.IsDuplicityVersion = vi.fn(() => true);
+
 	beforeAll(() => {
+		emitter = new EventEmitter();
+
 		globals.on = vi.fn((eventName: string, listener: Callback) =>
 			console.log('on', eventName, listener));
 
@@ -39,8 +42,6 @@ describe('Implement Xiao Application', () => {
 
 		globals.setTick = vi.fn((handler: Callback) => console.log('setTick', handler));
 
-		globals.IsDuplicityVersion = vi.fn(() => true);
-
 		globals.emit = vi.fn((eventName: string, ...args: any[]) => {
 			console.log('emit', eventName, args);
 		});
@@ -49,8 +50,6 @@ describe('Implement Xiao Application', () => {
 			console.log('emitNet', eventName, ...args);
 		});
 
-
-		emitter = new EventEmitter();
 	})
 
 	class IsTrue implements ICanActivate {
@@ -77,7 +76,7 @@ describe('Implement Xiao Application', () => {
 	class UserController implements BeforeControllerInit, AfterControllerInit, OnApplicationBootstrap {
 
 		@UseGuards(IsTrue)
-		@NetEvent('otherEvent')
+		@ServerEvent('otherEvent')
 		@SetMetadata('multiply-by', 2)
 		async eventGuarded(
 			eventName: string,
@@ -87,7 +86,7 @@ describe('Implement Xiao Application', () => {
 			console.log(`event ${eventName} called with ${arg1}`);
 		}
 
-		@LocalEvent('event')
+		@ClientEvent('event')
 		async event(eventName: string, source: number, @UsePipes(MultiplyPipe, MultiplyPipe) arg1: number): Promise<void> {
 			console.log(`event ${eventName} called`);
 		}

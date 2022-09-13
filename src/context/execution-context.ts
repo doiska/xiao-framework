@@ -2,16 +2,13 @@ import { Type, Callback } from '@typings';
 
 export class ExecutionContext {
 	constructor(
+		private readonly eventName: string,
 		private readonly args: unknown[],
 		private readonly _constructorReference: Type = null,
 		private readonly _handler: Callback = null) {}
 
 	getEventName(): string {
-		return this.getArgByIndex<string>(0);
-	}
-
-	getSource(): number {
-		return this.getArgByIndex<number>(1);
+		return this.eventName;
 	}
 
 	getClass<T = any>(): Type<T> {

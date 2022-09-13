@@ -1,5 +1,4 @@
 import { XiaoContainer } from "@containers/xiao.container";
-import { logger } from "@utils/logger";
 import { injectable } from "tsyringe";
 
 export function Controller(): ClassDecorator {

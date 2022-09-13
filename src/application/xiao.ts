@@ -23,15 +23,9 @@ export class XiaoApplication {
 	 * @returns {XiaoApplication}
 	 */
 	public static create(_bootstrap: Type): Promise<XiaoApplication> {
-
-		logger.info(`Creating XiaoApplication...`);
-
 		if (!XiaoApplication.instance) {
-			logger.info(`Creating XiaoApplication instance...`);
 			XiaoApplication.instance = new XiaoApplication();
 		}
-
-		logger.info(`Returning XiaoApplication instance...`, XiaoApplication.instance);
 
 		return Promise.resolve(XiaoApplication.instance);
 	}
