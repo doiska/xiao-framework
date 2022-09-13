@@ -1,6 +1,6 @@
 {
 	"name": "@fighter/framework",
-	"version": "0.0.19",
+	"version": "0.1.0",
 	"license": "MIT",
 	"scripts": {
 		"build": "node build.prod.js",
