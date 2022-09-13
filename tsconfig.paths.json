@@ -12,6 +12,7 @@
 			"@interfaces/*": ["interfaces/*"],
 			"@services/*": ["services/*"],
 			"@typings": ["typings/index"],
+			"@typings/*": ["typings/*"],
 			"@utils/*": ["utils/*"],
 			"~/*": ["./*"]
 		}

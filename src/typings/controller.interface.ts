@@ -1,7 +1,5 @@
-import { Callback } from "typings/five.interface";
-import { MaybePromise } from "typings/utils.type";
-
-
+import { Callback } from "@typings/five.interface";
+import { MaybePromise } from "@typings/utils.type";
 
 export interface Controller<T = any> extends Record<string, Callback<any>> {
 	new (...args: never[]): T
