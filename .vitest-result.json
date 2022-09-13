@@ -8,7 +8,7 @@
   "numFailedTests": 0,
   "numPendingTests": 0,
   "numTodoTests": 0,
-  "startTime": 1661891792303,
+  "startTime": 1662914604864,
   "success": true,
   "testResults": [
     {
@@ -21,7 +21,7 @@
           "fullName": " GuardsConsumer should return true",
           "status": "passed",
           "title": "should return true",
-          "duration": 3,
+          "duration": 4,
           "failureMessages": []
         },
         {
@@ -32,7 +32,7 @@
           "fullName": " GuardsConsumer should return false",
           "status": "passed",
           "title": "should return false",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -58,8 +58,8 @@
           "failureMessages": []
         }
       ],
-      "startTime": 1661892188814,
-      "endTime": 1661892188819,
+      "startTime": 1662915395700,
+      "endTime": 1662915395706,
       "status": "passed",
       "message": "",
       "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/guards.consumer.spec.ts"
@@ -75,7 +75,7 @@
           "fullName": " InterceptorsConsumer in-func should create a new in-function",
           "status": "passed",
           "title": "should create a new in-function",
-          "duration": 2,
+          "duration": 3,
           "failureMessages": []
         },
         {
@@ -111,7 +111,7 @@
           "fullName": " InterceptorsConsumer out-func should create a new out-function",
           "status": "passed",
           "title": "should create a new out-function",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -135,7 +135,7 @@
           "fullName": " InterceptorsConsumer out-func should call returns 1",
           "status": "passed",
           "title": "should call returns 1",
-          "duration": 1,
+          "duration": 0,
           "failureMessages": []
         },
         {
@@ -168,15 +168,184 @@
           "fullName": " InterceptorsConsumer should generate interceptors",
           "status": "passed",
           "title": "should generate interceptors",
-          "duration": 5,
+          "duration": 4,
           "failureMessages": []
         }
       ],
-      "startTime": 1661892188819,
-      "endTime": 1661892188832,
+      "startTime": 1662915395731,
+      "endTime": 1662915395744,
       "status": "passed",
       "message": "",
       "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/interceptors.consumer.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "on"
+          ],
+          "fullName": " EventRegister on should register event",
+          "status": "passed",
+          "title": "should register event",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "on"
+          ],
+          "fullName": " EventRegister on should register native event",
+          "status": "passed",
+          "title": "should register native event",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "onNet"
+          ],
+          "fullName": " EventRegister onNet should register eventName",
+          "status": "passed",
+          "title": "should register eventName",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventRegister",
+            "onNet"
+          ],
+          "fullName": " EventRegister onNet should register native event",
+          "status": "passed",
+          "title": "should register native event",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1662915395766,
+      "endTime": 1662915395785,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-register.service.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "server-emitter",
+            "emit"
+          ],
+          "fullName": " EventEmitter server-emitter emit should emit eventName from server-side",
+          "status": "passed",
+          "title": "should emit eventName from server-side",
+          "duration": 12,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "server-emitter",
+            "emitNet"
+          ],
+          "fullName": " EventEmitter server-emitter emitNet should emitNet eventName from server-side",
+          "status": "passed",
+          "title": "should emitNet eventName from server-side",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "client-emitter",
+            "emit"
+          ],
+          "fullName": " EventEmitter client-emitter emit should emit eventName from client-side",
+          "status": "passed",
+          "title": "should emit eventName from client-side",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "EventEmitter",
+            "client-emitter",
+            "emitNet"
+          ],
+          "fullName": " EventEmitter client-emitter emitNet should emitNet eventName from client-side",
+          "status": "passed",
+          "title": "should emitNet eventName from client-side",
+          "duration": 3,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1662915395788,
+      "endTime": 1662915395809,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-emitter.service.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "@SetMetadata"
+          ],
+          "fullName": " @SetMetadata should enhance class with expected metadata",
+          "status": "passed",
+          "title": "should enhance class with expected metadata",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "@SetMetadata"
+          ],
+          "fullName": " @SetMetadata should enhance method with expected metadata",
+          "status": "passed",
+          "title": "should enhance method with expected metadata",
+          "duration": 0,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1662915396395,
+      "endTime": 1662915396399,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/decorators/set-metadata.decorator.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "JsonSerializerInterceptor"
+          ],
+          "fullName": " JsonSerializerInterceptor should parse date string to instance of date object",
+          "status": "passed",
+          "title": "should parse date string to instance of date object",
+          "duration": 3,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1662915396444,
+      "endTime": 1662915396447,
+      "status": "passed",
+      "message": "",
+      "name": "D:/FiveM Server/projects/fighter-framework/src/interceptors/json-serializer.interceptor.spec.ts"
     },
     {
       "assertionResults": [
@@ -188,7 +357,7 @@
           "fullName": " PipesConsumer should create a new pipesFn",
           "status": "passed",
           "title": "should create a new pipesFn",
-          "duration": 3,
+          "duration": 4,
           "failureMessages": []
         },
         {
@@ -221,7 +390,7 @@
           "fullName": " PipesConsumer should return 40 as result",
           "status": "passed",
           "title": "should return 40 as result",
-          "duration": 1,
+          "duration": 0,
           "failureMessages": []
         },
         {
@@ -232,7 +401,7 @@
           "fullName": " PipesConsumer should pick from promise",
           "status": "passed",
           "title": "should pick from promise",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -243,184 +412,15 @@
           "fullName": " PipesConsumer should pick from value",
           "status": "passed",
           "title": "should pick from value",
-          "duration": 1,
-          "failureMessages": []
-        }
-      ],
-      "startTime": 1661892188818,
-      "endTime": 1661892188826,
-      "status": "passed",
-      "message": "",
-      "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/pipes.consumer.spec.ts"
-    },
-    {
-      "assertionResults": [
-        {
-          "ancestorTitles": [
-            "",
-            "EventRegister",
-            "on"
-          ],
-          "fullName": " EventRegister on should register event",
-          "status": "passed",
-          "title": "should register event",
-          "duration": 6,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventRegister",
-            "on"
-          ],
-          "fullName": " EventRegister on should register native event",
-          "status": "passed",
-          "title": "should register native event",
-          "duration": 1,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventRegister",
-            "onNet"
-          ],
-          "fullName": " EventRegister onNet should register eventName",
-          "status": "passed",
-          "title": "should register eventName",
-          "duration": 1,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventRegister",
-            "onNet"
-          ],
-          "fullName": " EventRegister onNet should register native event",
-          "status": "passed",
-          "title": "should register native event",
-          "duration": 1,
-          "failureMessages": []
-        }
-      ],
-      "startTime": 1661892188885,
-      "endTime": 1661892188896,
-      "status": "passed",
-      "message": "",
-      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-register.service.spec.ts"
-    },
-    {
-      "assertionResults": [
-        {
-          "ancestorTitles": [
-            "",
-            "@SetMetadata"
-          ],
-          "fullName": " @SetMetadata should enhance class with expected metadata",
-          "status": "passed",
-          "title": "should enhance class with expected metadata",
-          "duration": 3,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "@SetMetadata"
-          ],
-          "fullName": " @SetMetadata should enhance method with expected metadata",
-          "status": "passed",
-          "title": "should enhance method with expected metadata",
           "duration": 0,
           "failureMessages": []
         }
       ],
-      "startTime": 1661892189358,
-      "endTime": 1661892189361,
+      "startTime": 1662915462270,
+      "endTime": 1662915462278,
       "status": "passed",
       "message": "",
-      "name": "D:/FiveM Server/projects/fighter-framework/src/decorators/set-metadata.decorator.spec.ts"
-    },
-    {
-      "assertionResults": [
-        {
-          "ancestorTitles": [
-            "",
-            "JsonSerializerInterceptor"
-          ],
-          "fullName": " JsonSerializerInterceptor should parse date string to instance of date object",
-          "status": "passed",
-          "title": "should parse date string to instance of date object",
-          "duration": 3,
-          "failureMessages": []
-        }
-      ],
-      "startTime": 1661892189401,
-      "endTime": 1661892189404,
-      "status": "passed",
-      "message": "",
-      "name": "D:/FiveM Server/projects/fighter-framework/src/interceptors/json-serializer.interceptor.spec.ts"
-    },
-    {
-      "assertionResults": [
-        {
-          "ancestorTitles": [
-            "",
-            "EventEmitter",
-            "server-emitter",
-            "emit"
-          ],
-          "fullName": " EventEmitter server-emitter emit should emit eventName from server-side",
-          "status": "passed",
-          "title": "should emit eventName from server-side",
-          "duration": 4,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventEmitter",
-            "server-emitter",
-            "emitNet"
-          ],
-          "fullName": " EventEmitter server-emitter emitNet should emitNet eventName from server-side",
-          "status": "passed",
-          "title": "should emitNet eventName from server-side",
-          "duration": 1,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventEmitter",
-            "client-emitter",
-            "emit"
-          ],
-          "fullName": " EventEmitter client-emitter emit should emit eventName from client-side",
-          "status": "passed",
-          "title": "should emit eventName from client-side",
-          "duration": 1,
-          "failureMessages": []
-        },
-        {
-          "ancestorTitles": [
-            "",
-            "EventEmitter",
-            "client-emitter",
-            "emitNet"
-          ],
-          "fullName": " EventEmitter client-emitter emitNet should emitNet eventName from client-side",
-          "status": "passed",
-          "title": "should emitNet eventName from client-side",
-          "duration": 1,
-          "failureMessages": []
-        }
-      ],
-      "startTime": 1661892326292,
-      "endTime": 1661892326301,
-      "status": "passed",
-      "message": "",
-      "name": "D:/FiveM Server/projects/fighter-framework/src/services/event-emitter.service.spec.ts"
+      "name": "D:/FiveM Server/projects/fighter-framework/src/consumers/pipes.consumer.spec.ts"
     },
     {
       "assertionResults": [
@@ -433,7 +433,7 @@
           "fullName": " Implement Xiao Application Xiao Application should create a new application",
           "status": "passed",
           "title": "should create a new application",
-          "duration": 12,
+          "duration": 16,
           "failureMessages": []
         },
         {
@@ -445,7 +445,7 @@
           "fullName": " Implement Xiao Application Xiao Application should emitNet: \"otherEvent\"",
           "status": "passed",
           "title": "should emitNet: \"otherEvent\"",
-          "duration": 4,
+          "duration": 11,
           "failureMessages": []
         },
         {
@@ -457,7 +457,7 @@
           "fullName": " Implement Xiao Application Xiao Application should emit: \"event\"",
           "status": "passed",
           "title": "should emit: \"event\"",
-          "duration": 2,
+          "duration": 4,
           "failureMessages": []
         },
         {
@@ -469,12 +469,12 @@
           "fullName": " Implement Xiao Application Xiao Application should export method",
           "status": "passed",
           "title": "should export method",
-          "duration": 1,
+          "duration": 0,
           "failureMessages": []
         }
       ],
-      "startTime": 1661892326304,
-      "endTime": 1661892326323,
+      "startTime": 1662915541909,
+      "endTime": 1662915541940,
       "status": "passed",
       "message": "",
       "name": "D:/FiveM Server/projects/fighter-framework/src/application/application.spec.ts"

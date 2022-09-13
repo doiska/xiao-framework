@@ -15,8 +15,8 @@ export class CommandReader {
 			RegisterCommand(
 				commandName,
 				async (source: number, ...args: never[]) => {
-					const executionContext = new ExecutionContext(
-						[commandName, source || -1, ...args],
+					const executionContext = new ExecutionContext(commandName,
+						[source || -1, ...args],
 						controller,
 						controller[methodName]
 					);

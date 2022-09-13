@@ -23,6 +23,9 @@ export class EventEmitter {
 	 * @param args
 	 */
 	async emitNet(eventName: string, ...args: any[]): Promise<void> {
+
+		console.log(`[XIAO | EVENT EMITTER] emitNet ${eventName} with args: ${args}`);
+
 		if (isNativeEvent(eventName)) {
 			throw new Error('Cannot use a native event.');
 		}
@@ -41,13 +44,18 @@ export class EventEmitter {
 			let [target, ...params] = args;
 
 			if (!isInteger(target)) {
-				throw new Error('The first argument of emitNet must be an integer server-side.');
+				try {
+					target = parseInt(target);
+				} catch (e) {
+					throw new Error('The first argument in server-side emitNet must be a number.');
+				}
 			}
 
 			if (XiaoApplication.hasInterceptors()) {
 				params = await InterceptorsConsumer.interceptOut(...params);
 			}
 
+			console.log('emitNet', `fighter:${eventName}`, target, ...params);
 			emitNet(`fighter:${eventName}`, target, ...params);
 		} else {
 			if (!args.length) {
@@ -59,6 +67,7 @@ export class EventEmitter {
 				args = await InterceptorsConsumer.interceptOut(...args);
 			}
 
+			console.log('emitNet', `fighter:${eventName}`, ...args);
 			emitNet(`fighter:${eventName}`, ...args);
 		}
 	}
@@ -81,6 +90,8 @@ export class EventEmitter {
 		if (InterceptorsConsumer.interceptOut) {
 			args = await InterceptorsConsumer.interceptOut(...args);
 		}
+
+		console.log(`[XIAO | EVENT EMITTER] emit ${eventName} with args: ${args}`);
 		emit(`fighter:${eventName}`, ...args);
 	}
 }
